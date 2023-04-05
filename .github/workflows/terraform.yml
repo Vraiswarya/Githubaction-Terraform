@@ -1,5 +1,4 @@
-name: deploytest_infra
-
+name: terraform
 on:
   push:
     branches:
@@ -7,7 +6,6 @@ on:
   
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-
 jobs:
   deploy_check_jobtest:
     runs-on: ubuntu-latest
@@ -16,13 +14,10 @@ jobs:
       ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
-    runs-on: ubuntu-latest
     environment: Test 
-
     defaults:
       run:
         shell: bash
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -33,8 +28,8 @@ jobs:
           tf_actions_version:  1.4.4
           tf_actions_subcommand: 'init'
           tf_actions_working_dir: "./terraform"
-          
-          
+        
+        
       - name: 'Terraform Validate'
         uses: hashicorp/terraform-github-actions@master
         with:
