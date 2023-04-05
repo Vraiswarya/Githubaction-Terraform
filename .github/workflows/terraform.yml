@@ -28,7 +28,7 @@ jobs:
           tf_actions_version:  1.4.4
           tf_actions_subcommand: 'init'
           tf_actions_working_dir: "./azure"
-          args: '-backend-config="aishu/terraform.tfvars"'
+          args: '-backend-config="aishu/backend.tfvars"'
         
         
       - name: 'Terraform Validate'
@@ -44,7 +44,7 @@ jobs:
           tf_actions_version: 1.4.4
           tf_actions_subcommand: 'plan'
           tf_actions_working_dir: "./azure"
-         
+          args: '-var-file="aishu/terraform.tfvars"'
           
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
