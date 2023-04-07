@@ -17,47 +17,47 @@ data "azurerm_container_registry" "acr" {
 }
 data "azurerm_virtual_network" "vnet_resource" {
   name                = "vnet-dq-test-euwe-002"
-  resource_group_name = azurerm_resource_group.resourcegrp.name
-  location            = azurerm_resource_group.resourcegrp.location
+  resource_group_name = data.azurerm_resource_group.resourcegrp.name
+  location            = data.azurerm_resource_group.resourcegrp.location
   address_space       = ["10.103.70.0/24"]
 }
 
 data "azurerm_subnet" "frontend" {
   name                 = "frontend"
-  resource_group_name  = azurerm_resource_group.resourcegrp.name
-  virtual_network_name = azurerm_virtual_network.vnet_resource.name
+  resource_group_name  = data.azurerm_resource_group.resourcegrp.name
+  virtual_network_name = data.azurerm_virtual_network.vnet_resource.name
   address_prefixes     = ["10.103.70.165/28"]
 }
 
 data "azurerm_subnet" "backend" {
   name                 = "backend"
-  resource_group_name  = azurerm_resource_group.resourcegrp.name
-  virtual_network_name = azurerm_virtual_network.vnet_resource.name
+  resource_group_name  = data.azurerm_resource_group.resourcegrp.name
+  virtual_network_name = data.azurerm_virtual_network.vnet_resource.name
   address_prefixes     = ["10.254.2.0/24"]
 }
 
 resource "azurerm_public_ip" "example" {
   name                = "Publicip_apg"
-  resource_group_name = azurerm_resource_group.resourcegrp.name
-  location            = azurerm_resource_group.resourcegrp.location
+  resource_group_name = data.azurerm_resource_group.resourcegrp.name
+  location            = data.azurerm_resource_group.resourcegrp.location
   allocation_method   = "Dynamic"
 }
 
 # since these variables are re-used - a locals block makes this more maintainable
 locals {
-  backend_address_pool_name      = "${azurerm_virtual_network.vnet_resource.name}-beap"
-  frontend_port_name             = "${azurerm_virtual_network.vnet_resource.name}-feport"
-  frontend_ip_configuration_name = "${azurerm_virtual_network.vnet_resource.name}-feip"
-  http_setting_name              = "${azurerm_virtual_network.vnet_resource.name}-be-htst"
-  listener_name                  = "${azurerm_virtual_network.vnet_resource.name}-httplstn"
-  request_routing_rule_name      = "${azurerm_virtual_network.vnet_resource.name}-rqrt"
-  redirect_configuration_name    = "${azurerm_virtual_network.vnet_resource.name}-rdrcfg"
+  backend_address_pool_name      = "${data.azurerm_virtual_network.vnet_resource.name}-beap"
+  frontend_port_name             = "${data.azurerm_virtual_network.vnet_resource.name}-feport"
+  frontend_ip_configuration_name = "${data.azurerm_virtual_network.vnet_resource.name}-feip"
+  http_setting_name              = "${data.azurerm_virtual_network.vnet_resource.name}-be-htst"
+  listener_name                  = "${data.azurerm_virtual_network.vnet_resource.name}-httplstn"
+  request_routing_rule_name      = "${data.azurerm_virtual_network.vnet_resource.name}-rqrt"
+  redirect_configuration_name    = "${data.azurerm_virtual_network.vnet_resource.name}-rdrcfg"
 }
 
 resource "azurerm_application_gateway" "network" {
   name                = "agw-dq-test02"
-  resource_group_name = azurerm_resource_group.resourcegrp.name
-  location            = azurerm_resource_group.resourcegrp.location
+  resource_group_name = data.azurerm_resource_group.resourcegrp.name
+  location            = data.azurerm_resource_group.resourcegrp.location
 
   sku {
     tier     = "WAF_v2 "
@@ -65,7 +65,7 @@ resource "azurerm_application_gateway" "network" {
 
   gateway_ip_configuration {
     name      = "my-gateway-ip-configuration"
-    subnet_id = azurerm_subnet.frontend.id
+    subnet_id = data.azurerm_subnet.frontend.id
   }
 
   frontend_port {
