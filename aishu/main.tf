@@ -4,7 +4,7 @@ provider "azurerm" {
 }
 data "azurerm_resource_group" "resourcegrp" {
     name= var.rg_name
-    location= data.location
+    location= "westeurope"
 }
 #acr
 data "azurerm_container_registry" "acr" {
