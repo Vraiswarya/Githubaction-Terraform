@@ -4,7 +4,7 @@ provider "azurerm" {
 }
 data "azurerm_resource_group" "resourcegrp" {
     name= var.rg_name
-    location= var.location
+    location= data.location
 }
 #acr
 data "azurerm_container_registry" "acr" {
