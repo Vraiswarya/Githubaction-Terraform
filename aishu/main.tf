@@ -58,7 +58,7 @@ resource "azurerm_application_gateway" "network" {
   name                = "agw-dq-test02"
   resource_group_name = azurerm_resource_group.resourcegrp.name
   location            = azurerm_resource_group.resourcegrp.location
-
+}
   sku {
     tier     = "WAF_v2 "
   }
