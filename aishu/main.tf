@@ -9,7 +9,7 @@ data "azurerm_resource_group" "resourcegrp" {
 #acr
 data "azurerm_container_registry" "acr" {
   name                = var.acr_name
-  resource_group_name = azurerm_resource_group.resourcegrp.name
+  resource_group_name = data.azurerm_resource_group.resourcegrp.name
   location            = var.location
   sku                 = "Premium"
   admin_enabled       = false
