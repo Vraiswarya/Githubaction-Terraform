@@ -4,3 +4,7 @@ variable "rg_name" {
 variable "location" {
   type = string
 }
+variable "acr_name" {
+  type  = string
+  default = "ACR name"
+}

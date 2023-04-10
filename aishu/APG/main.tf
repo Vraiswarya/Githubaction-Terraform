@@ -4,6 +4,7 @@ resource "azurerm_application_gateway" "APG" {
   location            = var.location
 
   sku {
+    name     = "Standard_Small"
     tier     = "WAF_v2"
    
   }
