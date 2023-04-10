@@ -1,4 +1,11 @@
 
+data "azurerm_virtual_network" "vnet_resource" {
+  name                = "vnet-dq-test-euwe-002"
+  resource_group_name =  var.rg_name
+  location            =  var.location
+  address_space       = ["10.103.70.0/24"]
+}
+
 data "azurerm_subnet" "frontend" {
   name                 = "frontend"
   resource_group_name  = data.azurerm_resource_group.resourcegrp.name
