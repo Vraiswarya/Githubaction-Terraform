@@ -1,6 +1,6 @@
 resource "azurerm_application_gateway" "APG" {
   name                = var.apgname
-  resource_group_name = var.rgname
+  resource_group_name = var.rg_name
   location            = var.location
 
   sku {

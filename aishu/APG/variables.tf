@@ -4,6 +4,6 @@ variable "apgname" {
 variable "location" {
   type = string
 }
-variable "rgname" {
+variable "rg_name" {
   type = string
 }
