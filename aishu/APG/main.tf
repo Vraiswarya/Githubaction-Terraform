@@ -6,7 +6,7 @@ data "azurerm_virtual_network" "vnet_resource" {
 
 data "azurerm_subnet" "frontend" {
   name                 = "frontend"
-  resource_group_name  = data.azurerm_resource_group.resourcegrp.name
+  resource_group_name  = var.rg_name
   virtual_network_name = data.azurerm_virtual_network.vnet_resource.name
   address_prefixes     = ["10.103.70.165/28"]
 }
