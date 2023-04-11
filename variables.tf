@@ -16,5 +16,5 @@ variable "apgname" {
 }
 variable "address_pre" {
   description = "address_pre"
-  type        = string
+  type        = list(string) 
 }
