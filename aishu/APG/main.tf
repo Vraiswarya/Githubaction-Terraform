@@ -1,15 +1,4 @@
 
-data "azurerm_virtual_network" "vnet_resource" {
-  name                = "vnet-dq-test-euwe-002"
-  resource_group_name =  var.rg_name
-}
-
-data "azurerm_subnet" "frontend" {
-  name                 = "frontend"
-  resource_group_name  = var.rg_name
-  virtual_network_name = data.azurerm_virtual_network.vnet_resource.name
- 
-}
 
 resource "azurerm_application_gateway" "APG" {
   name                = var.apgname
@@ -24,7 +13,6 @@ resource "azurerm_application_gateway" "APG" {
 
   gateway_ip_configuration {
     name      = "dqgatewayipcon"
-    subnet_id = data.azurerm_subnet.frontend.id
   }
 
   frontend_port {
