@@ -13,3 +13,6 @@ variable "apgname" {
   description = "Application Gateway"
   type        = string
 }
+variable "waf_name" {
+  type = string
+}
