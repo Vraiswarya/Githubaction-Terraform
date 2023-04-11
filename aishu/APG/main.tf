@@ -13,7 +13,7 @@ resource "azurerm_application_gateway" "APG" {
 
   gateway_ip_configuration {
     name      = "dqgatewayipcon"
-    subnet_id = data.azurerm_subnet.frontend.id
+    subnet_id = "10.103.70.165/28"
   }
 
   frontend_port {
