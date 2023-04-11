@@ -6,5 +6,4 @@ variable "location" {
 }
 variable "acr_name" {
   type  = string
-  default = "ACR name"
 }
