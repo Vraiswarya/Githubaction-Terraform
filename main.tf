@@ -7,6 +7,7 @@ module "APG" {
   apgname    = var.apgname
   rg_name   = var.rg_name
   location = var.location
+  address_pre=var.address_pre
 }
 module "RG" {
     source   = "./aishu/RG" #A 
