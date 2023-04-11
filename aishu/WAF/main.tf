@@ -1,4 +1,4 @@
-resource "azurerm_web_application_firewall_policy" "waf" {
+data "azurerm_web_application_firewall_policy" "waf" {
   name                =  var.waf_name
   resource_group_name =  var.rg_name
   location            =  var.location

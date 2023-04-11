@@ -11,4 +11,9 @@ module "WAF" {
   
 }
 
-
+module "ACR" {
+    source   = "./aishu/ACR" #A 
+    rg_name  = var.rg_name     #B 
+    acr_name = var.acr_name  
+    location = var.location
+}
