@@ -14,3 +14,7 @@ variable "apgname" {
   description = "Application Gateway"
   type        = string
 }
+variable "address_pre" {
+  description = "address_pre"
+  type        = string
+}
