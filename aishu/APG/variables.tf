@@ -7,6 +7,3 @@ variable "location" {
 variable "rg_name" {
   type = string
 }
-variable "address_pre" {
-  type = list(string) 
-}
